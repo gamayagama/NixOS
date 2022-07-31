@@ -30,4 +30,6 @@ in {
     extensions = myExtentions;
     userSettings = mySettings;
   };
+
+  home.packages = with pkgs; [ jetbrains.idea-community ];
 }

@@ -7,6 +7,6 @@
     ./keyboard
     ./music
     ./productivity
-    ./vscode
+    ./IDE
   ];
 }
