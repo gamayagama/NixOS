@@ -8,44 +8,43 @@
   boot = {
     cleanTmpDir = true;
     loader = {
-      grub = {
-        enable = true;
-	      device = "/dev/nvme0n1";
-	      configurationLimit = 10;
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
       };
       timeout = 3;
     };
+
     initrd = {
-      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
     };
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/94d41881-1aa2-49ed-b5f5-f38cb77fc6f4";
+    { device = "/dev/disk/by-uuid/a4b6ec18-efad-4fc8-9a4a-673a0e703727";
       fsType = "ext4";
     };
 
+  fileSystems."/boot/efi" =
+    { device = "/dev/disk/by-uuid/A0E6-8F11";
+      fsType = "vfat";
+    };
+
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/e12cd45f-e732-4c27-b8ed-ccae6e0b3ba6"; }
+    [ { device = "/dev/disk/by-uuid/3e116837-a221-4615-a072-367d984a1e65"; }
     ];
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   networking = {
-
     hostName = "daedalus";
 
-    # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-    # (the default) this is the recommended approach. When using systemd-networkd it's
-    # still possible to use this option, but it's recommended to use it in conjunction
-    # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
     useDHCP = lib.mkDefault true;
-    interfaces.enp7s0.useDHCP = lib.mkDefault true;
+    # interfaces.enp0s31f6.useDHCP = lib.mkDefault true;
   };
-
-  # DO NOT TOUCH!
-  system.stateVersion = "22.05";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
