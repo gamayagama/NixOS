@@ -11,6 +11,5 @@
     qbittorrent
     spotify
     protonvpn-gui
-    signal-desktop
   ];
 }
