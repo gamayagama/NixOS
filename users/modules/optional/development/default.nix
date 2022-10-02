@@ -3,6 +3,10 @@
 {
   programs = {
 
+    java = {
+      enable = true;
+    };
+
     git = {
       enable = true;
       userEmail = "fmrh@pm.me";
