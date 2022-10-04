@@ -47,4 +47,11 @@
   };
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  # Nvidia Graphics
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
+
+  # Do not touch!
+  system.stateVersion = "22.11";
 }
