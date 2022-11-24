@@ -17,6 +17,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  services.flatpak.enable = true;
+
   environment = {
 
     variables = {
@@ -37,6 +39,9 @@
       p7zip
       ripgrep
       fd
+      tor-browser-bundle-bin
+      inkscape
+      kicad
     ];
   };
 }
