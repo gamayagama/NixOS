@@ -8,6 +8,6 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
-  # Minecraft (polyMC) client
-  environment.systemPackages = with pkgs; [ polymc ];
+  # Minecraft (prismlauncher) client
+  environment.systemPackages = with pkgs; [ prismlauncher ];
 }
