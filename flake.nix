@@ -30,7 +30,7 @@
       );
       homeConfigurations = (
         import ./users {
-         inherit lib system pkgs home-manager;
+         inherit lib system pkgs nur home-manager;
         }
       );
     };
