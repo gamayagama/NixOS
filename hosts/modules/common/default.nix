@@ -9,8 +9,10 @@
       ./locale
       ./networking
       ./nix
+      ./security
       ./ssh
       ./users
+      ./virtualisation
       ./xserver
     ];
 
@@ -31,7 +33,7 @@
 
     # System packages
     systemPackages = with pkgs; [
-      
+
       # Utilities
       wget
       ranger
@@ -40,8 +42,10 @@
       ripgrep
       fd
       tor-browser-bundle-bin
-      inkscape
-      kicad
+      whatsapp-for-linux
+      nicotine-plus
+      tagger
+      blender
     ];
   };
 }
