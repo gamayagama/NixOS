@@ -33,8 +33,6 @@
 
     # System packages
     systemPackages = with pkgs; [
-
-      # Utilities
       wget
       ranger
       xarchiver
@@ -45,7 +43,6 @@
       whatsapp-for-linux
       nicotine-plus
       tagger
-      blender
     ];
   };
 }
