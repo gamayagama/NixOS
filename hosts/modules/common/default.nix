@@ -9,13 +9,17 @@
       ./locale
       ./networking
       ./nix
+      ./security
       ./ssh
       ./users
+      ./virtualisation
       ./xserver
     ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  services.flatpak.enable = true;
 
   environment = {
 
@@ -29,14 +33,16 @@
 
     # System packages
     systemPackages = with pkgs; [
-      
-      # Utilities
       wget
       ranger
       xarchiver
       p7zip
       ripgrep
       fd
+      tor-browser-bundle-bin
+      whatsapp-for-linux
+      nicotine-plus
+      tagger
     ];
   };
 }
