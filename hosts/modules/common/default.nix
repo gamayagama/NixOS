@@ -21,6 +21,9 @@
 
   services.flatpak.enable = true;
 
+  # Enable fwupd for firmware updates
+  services.fwupd.enable = true;
+
   environment = {
 
     variables = {
