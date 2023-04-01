@@ -5,7 +5,7 @@
     enable = true;
   };
 
-  # Enable tray unit for flameshot due to a bug not enabling it on Wayland
+  # Enable tray unit for flameshot due to a bug not enabling it
   # See more: https://github.com/nix-community/home-manager/issues/2064
   systemd.user.targets.tray = {
 		Unit = {
