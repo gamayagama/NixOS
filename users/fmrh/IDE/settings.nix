@@ -29,7 +29,7 @@
   "workbench.iconTheme" = "material-icon-theme";
   "workbench.sideBar.location" = "left";
   "workbench.settings.enableNaturalLanguageSearch" = false;
-  "workbench.colorTheme" = "Ayu Dark Bordered";
+  "workbench.colorTheme" = "Gruvbox Dark Medium";
   "workbench.list.smoothScrolling" = true;
 
   "files.trimFinalNewlines" = true;
