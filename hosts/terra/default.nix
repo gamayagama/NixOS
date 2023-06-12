@@ -6,7 +6,7 @@
   ];
 
   boot = {
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
     loader = {
       systemd-boot.enable = true;
       efi = {
@@ -40,7 +40,7 @@
 
 
   networking = {
-    hostName = "daedalus";
+    hostName = "terra";
 
     useDHCP = lib.mkDefault true;
     # interfaces.enp0s31f6.useDHCP = lib.mkDefault true;
