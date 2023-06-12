@@ -9,8 +9,8 @@
 
     git = {
       enable = true;
-      userEmail = "fmrh@pm.me";
-      userName = "Fillip Holgersen";
+      userEmail = "admin@gama.pm";
+      userName = "gamarok";
       extraConfig = {
         init = { defaultBranch = "main"; };
       };
