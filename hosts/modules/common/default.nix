@@ -46,6 +46,7 @@
       whatsapp-for-linux
       nicotine-plus
       tagger
+      syncthing
     ];
   };
 }
