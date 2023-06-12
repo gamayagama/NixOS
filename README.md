@@ -14,7 +14,7 @@ Please note that this repository may see sudden, drastic changes, and is not at 
 
 ## Structure
 
-The main structure of the repository, as shown below, consists of three top-level folders: hosts, scripts, and users, as well as the flake.nix file in the root of the repository. 
+The main structure of the repository, as shown below, consists of three top-level folders: hosts, scripts, and users, as well as the flake.nix file in the root of the repository.
 
 ```
 .dotfiles
@@ -36,19 +36,19 @@ NOTE: this structure is not final. As I learn more, I may still add or remove ce
 
 The flake.nix file is the entrypoint for the system. It contains a set of **inputs**, which can be thought of as the dependencies that the system requires to successfully build itself. The flake.nix also contains some **outputs**. These are what dictates how the system actually gets build.
 
-In this case, you will see a let block, which I use to set some variables, that I then use to build my nixosConfigurations and my homeConfigurations. These handle the NixOS system configuration and the home-manager configuration respectively. 
+In this case, you will see a let block, which I use to set some variables, that I then use to build my nixosConfigurations and my homeConfigurations. These handle the NixOS system configuration and the home-manager configuration respectively.
 
-Home-manager is simply put a tool to configure things on a per-user basis. It also provides a large amount of configuration options that are not available in the system configuration. 
+Home-manager is simply put a tool to configure things on a per-user basis. It also provides a large amount of configuration options that are not available in the system configuration.
 
 For more information, visit the [home-manager repository](https://github.com/nix-community/home-manager).
 
 ### hosts
 
-The *hosts* folder contains everything needed for the system configuration. First and foremost, it contains a *default.nix* file, which gets loaded in the flake.nix file. 
+The _hosts_ folder contains everything needed for the system configuration. First and foremost, it contains a _default.nix_ file, which gets loaded in the flake.nix file.
 
 NOTE: you may have noticed that the flake.nix file did not specify a specific file, but rather it just specified the hosts folder. This is because the Nix language will automatically look for a default.nix file whenever a folder is provided instead of a specific file. This will be a recurring theme for my configuration.
 
-So, the default.nix file passes specific configuration files for each host machine to the flake. In my case you see athena and daedalus, which refers to my laptop and my main PC respectively. In both cases it loads a *common* folder, once again relying on the "default" behavior. Each host also loads its own folder.
+So, the default.nix file passes specific configuration files for each host machine to the flake. In my case you see athena and Terra, which refers to my laptop and my main PC respectively. In both cases it loads a _common_ folder, once again relying on the "default" behavior. Each host also loads its own folder.
 
 It is important to note that these hosts can be called anything, but they should ideally match the hostname of the machine, as seen by running the `hostname` command. The hostname is also defined within the hardware section of the hosts configuration.
 
@@ -58,14 +58,14 @@ Each of these folders can be thought of as modules, which means they could just 
 
 ### users
 
-The *users* folder works more or less exactly like the hosts folder, with the exception being that all the configurations are applied to a user instead of a host machine, and like mentioned earlier, there is a larger set of configuration options.
+The _users_ folder works more or less exactly like the hosts folder, with the exception being that all the configurations are applied to a user instead of a host machine, and like mentioned earlier, there is a larger set of configuration options.
 
 NOTE: There are some configuration options that overlap, but some options will only work in home-manager configurations and some will only work in the system configuration, so make sure you are checking which options are available depending on what you are configuring.
 
 ### scripts
 
-The *scripts* folder is simply put where I store some of the scripts that I use to manage my system.
-Specifically, it contains an *update* script, which checks for package updates, an *applySystem* script, which applies the system configuration, an applyUsers script, which applies the home-manager configuration, and finally a fwupd script, which checks for firmware upgrades and applies them, if any is available.
+The _scripts_ folder is simply put where I store some of the scripts that I use to manage my system.
+Specifically, it contains an _update_ script, which checks for package updates, an _applySystem_ script, which applies the system configuration, an applyUsers script, which applies the home-manager configuration, and finally a fwupd script, which checks for firmware upgrades and applies them, if any is available.
 
 It is possible to use home-manager as a module within the system configuration, which would remove the need for the applyUsers script, however I have had better experiences keeping them separate so far. I may revisit this later though.
 
