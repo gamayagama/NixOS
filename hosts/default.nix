@@ -1,11 +1,11 @@
 { lib, pkgs, inputs, system, ... }:
 
 {
-  daedalus = lib.nixosSystem {
+  terra = lib.nixosSystem {
     inherit system;
     specialArgs = { inherit inputs; };
     modules = [
-      ./daedalus
+      ./terra
       ./modules/common
 
       ./modules/optional/gaming
