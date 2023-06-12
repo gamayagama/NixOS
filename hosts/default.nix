@@ -12,11 +12,11 @@
     ];
   };
 
-  athena = lib.nixosSystem {
+  saphyr = lib.nixosSystem {
     inherit system;
     specialArgs = { inherit inputs; };
     modules = [
-      ./athena
+      ./saphyr
       ./modules/common
     ];
   };

@@ -48,7 +48,7 @@ The _hosts_ folder contains everything needed for the system configuration. Firs
 
 NOTE: you may have noticed that the flake.nix file did not specify a specific file, but rather it just specified the hosts folder. This is because the Nix language will automatically look for a default.nix file whenever a folder is provided instead of a specific file. This will be a recurring theme for my configuration.
 
-So, the default.nix file passes specific configuration files for each host machine to the flake. In my case you see athena and Terra, which refers to my laptop and my main PC respectively. In both cases it loads a _common_ folder, once again relying on the "default" behavior. Each host also loads its own folder.
+So, the default.nix file passes specific configuration files for each host machine to the flake. In my case you see saphyr and Terra, which refers to my laptop and my main PC respectively. In both cases it loads a _common_ folder, once again relying on the "default" behavior. Each host also loads its own folder.
 
 It is important to note that these hosts can be called anything, but they should ideally match the hostname of the machine, as seen by running the `hostname` command. The hostname is also defined within the hardware section of the hosts configuration.
 
