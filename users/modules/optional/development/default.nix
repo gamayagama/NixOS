@@ -10,7 +10,7 @@
     git = {
       enable = true;
       userEmail = "admin@gama.pm";
-      userName = "gamarok";
+      userName = "Gamayun Robakov";
       extraConfig = {
         init = { defaultBranch = "main"; };
       };
