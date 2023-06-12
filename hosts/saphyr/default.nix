@@ -6,7 +6,7 @@
   ];
 
   boot = {
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
     loader = {
       systemd-boot = {
         enable = true;
