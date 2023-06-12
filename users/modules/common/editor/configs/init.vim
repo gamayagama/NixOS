@@ -1,6 +1,6 @@
 let mapleader=' '
-
-colorscheme gruvbox8_hard
+set background=dark
+colorscheme gruvbox8
 
 " Functional
 set encoding=utf-8
@@ -26,9 +26,8 @@ set showmatch " Show matching brackets
 set cursorline " Highlight current line
 set nu rnu " Set relative line number + current line number
 syntax on
-set termguicolors
-set background=dark
-hi Normal guibg=NONE ctermbg=NONE
+" set termguicolors
+" hi Normal guibg=NONE ctermbg=NONE
 
 set cmdheight=1
 set pumheight=10

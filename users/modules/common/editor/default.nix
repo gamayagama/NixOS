@@ -15,8 +15,8 @@ let
     vim-css-color
 
     vim-gruvbox8
-    vim-airline
-    vim-airline-themes
+    #vim-airline
+    #vim-airline-themes
     rainbow_parentheses-vim
   ];
 
