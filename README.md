@@ -81,8 +81,7 @@ Bear in mind that this does not cover things like [home-manager](https://github.
 [NixOS manual](https://nixos.org/manual/nixos/stable/)
 
 > [!NOTE]
-> While I do use flakes myself, I can't say that I fully understand them,  
-> and for that reason I have avoided sharing any resources on this topic specifically, but I hope some of the other resources mentioned have given you an idea as to where to look.
+> While I do use flakes myself, I can't say that I fully understand them, and for that reason I have avoided sharing any resources on this topic specifically, but I hope some of the other resources mentioned have given you an idea as to where to look.
 
 ## Special thanks
 
@@ -104,3 +103,4 @@ It should be noted that this list is not exhaustive. At this point I have gone t
 [Nixology series](https://www.youtube.com/playlist?list=PLRGI9KQ3_HP_OFRG6R-p4iFgMSK1t5BHs) by Burke Libbey  
 [Xe Iaso's blog](https://xeiaso.net/blog/)  
 [FlakeHub](https://flakehub.com/flakes)  
+[Noogle](https://noogle.dev/)
