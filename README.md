@@ -18,7 +18,7 @@ This is my personal configuration of NixOS, and the various programs I use. Curr
 
 As I develop this project, I aim for a setup that:
 
-- Accomodates various needs
+- Accommodates various needs
 - Makes it easy to setup new hardware
 - Is fully (or mostly) declarative
 - Consists of highly readable code
