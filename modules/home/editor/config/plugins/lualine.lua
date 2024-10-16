@@ -52,7 +52,7 @@ local config = {
     lualine_z = {},
     -- Insertin
     lualine_c = {},
-    lualine_x = {}, 
+    lualine_x = {},
   },
   inactive_sections = {
     -- Clearing defaults
@@ -201,7 +201,7 @@ ins_right {
 ins_right { 'location' }
 
 -- Progress
-ins_right { 
+ins_right {
   'progress',
   color = { fg = colors.fg, gui = 'bold' }
 }
