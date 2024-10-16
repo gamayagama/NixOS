@@ -1,5 +1,4 @@
 { inputs, pkgs, username, ... }:
-
 {
   # Import other home-manager modules
   
@@ -48,6 +47,7 @@
     freetube
     proton-pass
     qbittorrent
+    discord
   ];
 
   home = {
