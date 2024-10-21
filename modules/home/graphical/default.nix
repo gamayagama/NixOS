@@ -32,7 +32,14 @@ in {
         wallpaper = "./wallpaper.png";
       };
     };
+
     flameshot.enable = true;
+
+    dunst = {
+      enable = true;
+      settings = {};
+      # iconTheme = {};
+    };
   };
 
   programs = {
@@ -49,7 +56,7 @@ in {
             path = "screenshot";
             blur_passes = 3;
             blur_size = 8;
-          };
+          }
         ];
         input-field = [
           {
@@ -82,11 +89,6 @@ in {
         matching-algorithm = "fuzzy";
         terminal = "kitty";
       };
-    };
-    dunst = {
-      enable = true;
-      settings = {};
-      iconTheme = {};
     };
   };
 
