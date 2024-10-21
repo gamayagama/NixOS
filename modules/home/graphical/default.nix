@@ -1,63 +1,93 @@
 { config, pkgs, ... }:
 
-{
-  xsession.windowManager = {
-    awesome.enable = true;
+let
+  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    ${pkgs.waybar}/bin/waybar &
+  '';
 
-  #   spectrwm = {
-  #     enable = true;
-  #     settings = {
-  #       modkey = "Mod4";
-  #       bar_border = 0;
-  #     };
-  #     bindings = {
-  #       term = "Mod+Return";
-  #     };
-  #     programs = {
-  #       term = "kitty";
-  #       menu = "rofi -show drun";
-  #       search = "rofi -show window";
-  #     };
-  #   };
-
-    bspwm = {
-      enable = true;
-      monitors = {
-       default = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" ];
-      };
-      startupPrograms = [
-        "pgrep +x sxhkd > /dev/null || sxhkd"
-      ];
-      rules = {};
-      settings = {
-        border_width = 2;
-      };
+in {
+  wayland.windowManager.hyprland = {
+    enable = true;
+    settings = {
+      exec-once = ''
+        ${startupScript}/bin/start
+      '';
     };
   };
-
   services = {
-    sxhkd = {
+    # sxhkd = {
+    #   enable = true;
+    #   keybindings = {
+    #     "super + Return" = "kitty";
+    #     "super + shift + Return" = "rofi -show drun";
+    #     "super + shift + q" = "bspc quit";
+    #     "super + shift + r" = "bspc wm -r";
+    #   };
+    # };
+
+    hyprpaper = {
       enable = true;
-      keybindings = {
-        "super + Return" = "kitty";
-        "super + shift + Return" = "rofi -show drun";
-        "super + shift + q" = "bspc quit";
-        "super + shift + r" = "bspc wm -r";
+      settings = {
+        preload = "./wallpaper.png";
+        wallpaper = "./wallpaper.png";
       };
     };
+    flameshot.enable = true;
   };
 
-  # home.packages = with pkgs; [ xlockmore ];
+  programs = {
+    hyprlock = {
+      enable = true;
+      settings = {
+        general = {
+          disable_loading_bar = true;
+          hide_cursor = true;
+          ignore_empty_input = true;
+        };
+        background = [
+          {
+            path = "screenshot";
+            blur_passes = 3;
+            blur_size = 8;
+          };
+        ];
+        input-field = [
+          {
+            size = "200, 50";
+          }
+        ];
+      };
+    };
+    tofi = {
+      enable = true;
+      settings = {
+        font = "Hack";
+        font-size = 30;
 
-  programs.rofi = {
-    enable = true;
-    terminal = "kitty";
-    plugins = with pkgs; [ rofi-calc ];
+        prompt-text = " ";
 
-  };
+        border-width = 0;
+        outline-width = 0;
+        padding-left = "5%";
+        padding-top = "5%";
+        padding-right = "0%";
+        padding-bottom = "0%";
 
-  services.flameshot = {
-    enable = true;
+        # background-color = "#000000";
+        # text-color = "#FFFFFF";
+        # selection-color = "#939393";
+
+        hide-cursor = true;
+        num-results = 5;
+        matching-algorithm = "fuzzy";
+        terminal = "kitty";
+      };
+    };
+    dunst = {
+      enable = true;
+      settings = {};
+      iconTheme = {};
+    };
   };
 
   # Enable systemd target unit needed for flameshot
