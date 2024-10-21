@@ -3,6 +3,8 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
+    ${pkgs.sxhkd}/bin/sxhkd &
+    killall -q hyprpaper || hyprpaper
   '';
 
 in {
@@ -12,18 +14,47 @@ in {
       exec-once = ''
         ${startupScript}/bin/start
       '';
+      general = {
+        border_size = 2;
+        # no_border_on_floating = true;
+        gaps_in = 1;
+        gaps_out = 3;
+        "col.inactive_border" = "rgba(90678b88)";
+        "col.active_border" = "rgba(e0a5d9ff)";
+        layout = "master";
+      };
+      decoration = {
+        rounding = 2;
+        drop_shadow = true;
+        shadow_range = 4;
+        "col.shadow" = "rgba(1a1a1aee)";
+      };
+      input = {
+        scroll_method = "2fg";
+        touchpad = {
+          natural_scroll = true;
+          disable_while_typing = true;
+        };
+      };
+      gestures = {
+        workspace_swipe = true;
+        workspace_swipe_fingers = 3;
+        workspace_swipe_forever = true;
+      };
+      misc = {
+        disable_hyprland_log = true;
+        disable_spash_rendering = true;
+      };
     };
   };
   services = {
-    # sxhkd = {
-    #   enable = true;
-    #   keybindings = {
-    #     "super + Return" = "kitty";
-    #     "super + shift + Return" = "rofi -show drun";
-    #     "super + shift + q" = "bspc quit";
-    #     "super + shift + r" = "bspc wm -r";
-    #   };
-    # };
+    sxhkd = {
+      enable = true;
+      keybindings = {
+        "super + Return" = "kitty";
+        "super + shift + Return" = "tofi";
+      };
+    };
 
     hyprpaper = {
       enable = true;
@@ -43,6 +74,11 @@ in {
   };
 
   programs = {
+    waybar = {
+      enable = true;
+      settings = {};
+      # style = ./config/waybar.css;
+    };
     hyprlock = {
       enable = true;
       settings = {
