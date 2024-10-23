@@ -1,9 +1,6 @@
-{ config, pkgs, ... }:
-
-let
+{pkgs, ...}: let
   toLua = str: "lua << EOF\n${str}\nEOF\n";
   toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-
 in {
   programs.neovim = {
     enable = true;
@@ -12,27 +9,27 @@ in {
     vimAlias = true;
     vimdiffAlias = true;
 
-    extraPackages = with pkgs; [ fd
+    extraPackages = with pkgs; [
+      fd
       ripgrep
       xclip
       wl-clipboard
-      
+
       # Language servers
-      nil                     # Nix
-      lua-language-server     # Lua
-    
+      nixd # Nix
+      lua-language-server # Lua
     ];
     plugins = with pkgs.vimPlugins; [
       # Plugins can be loaded and configured at once
       # See example below:
 
-        # {
-        #   plugin = plugin-name;
-        # Use the appropriate config method  
-        #   config = toLuaFile ./configfile.lua;
-        #   config = toLua "lua code";
-        #   config = "vimscript code";
-        # }
+      # {
+      #   plugin = plugin-name;
+      # Use the appropriate config method
+      #   config = toLuaFile ./configfile.lua;
+      #   config = toLua "lua code";
+      #   config = "vimscript code";
+      # }
 
       {
         plugin = nvim-lspconfig;
