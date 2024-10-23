@@ -1,18 +1,18 @@
 { inputs, config, pkgs, ... }:
 
 {
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  #   portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  # };
 
-  environment.sessionVariables = {
-    # Hint Electron apps to use Wayland
-    NIXOS_OZONE_WL = "1";
-    # Enable if cursor becomes invisible
-    # WLR_NO_HARDWARE_CURSORS = "1";
-  };
+  # environment.sessionVariables = {
+  #   # Hint Electron apps to use Wayland
+  #   NIXOS_OZONE_WL = "1";
+  #   # Enable if cursor becomes invisible
+  #   # WLR_NO_HARDWARE_CURSORS = "1";
+  # };
 
   services = {
     displayManager = {
