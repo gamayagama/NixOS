@@ -1,9 +1,7 @@
-{ config, pkgs, ... }:
-
 {
   programs.kitty = {
     enable = true;
-    shellIntegration.enableZshIntegration  = true;
+    shellIntegration.enableZshIntegration = true;
     # See available themes here:
     # https://github.com/kovidgoyal/kitty-themes/tree/master/themes
     # This option takes the file name of a theme, without the .conf suffix

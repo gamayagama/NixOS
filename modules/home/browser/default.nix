@@ -1,7 +1,5 @@
-{ config, pkgs, ... }:
-
 {
-  programs = { 
+  programs = {
     # May be replaced by librewolf later, but works better out of the box
     firefox = {
       enable = true;

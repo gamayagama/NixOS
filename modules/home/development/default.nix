@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 {
   programs = {
     git = {
@@ -7,7 +5,7 @@
       userEmail = "admin@gama.pm";
       userName = "Gamayun Robakov";
       extraConfig = {
-        init = { defaultBranch = "main"; };
+        init = {defaultBranch = "main";};
       };
     };
     gpg = {

@@ -1,13 +1,11 @@
-{ config, pkgs, ... }:
-
-{
+{pkgs, ...}: {
   fonts.packages = with pkgs; [
     atkinson-hyperlegible
-    (nerdfonts.override
+    (
+      nerdfonts.override
       {
-        fonts = [ "FiraCode" "Hack" ];
+        fonts = ["FiraCode" "Hack"];
       }
     )
   ];
 }
-

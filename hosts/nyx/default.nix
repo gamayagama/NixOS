@@ -1,6 +1,7 @@
-{ config, lib, pkgs, modulesPath, system, ... }:
-
 {
+  # inputs,
+  ...
+}: {
   # Import system (NixOS) modules
   imports = [
     # To import from personal flake exports (modules/nixos):
@@ -20,7 +21,7 @@
     ../../modules/nixos/sound
 
     # Hardware configuration
-    ./hardware.nix 
+    ./hardware.nix
   ];
 
   services.fwupd.enable = true;

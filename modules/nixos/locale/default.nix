@@ -1,8 +1,5 @@
-{ config, pkgs, ... }:
-
-let 
+let
   myLocale = "en_US.UTF-8";
-
 in {
   time.timeZone = "Europe/Copenhagen";
   i18n = {

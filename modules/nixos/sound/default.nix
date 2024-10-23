@@ -1,15 +1,5 @@
-{ config, pkgs, ... }:
-
 {
   security.rtkit.enable = true;
-
-  # Bluetooth
-  # TODO: make this section optional, and solve issue with device not appearing
-  # hardware.bluetooth = {
-  #   enable = true; # enables support for Bluetooth
-  #   powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  # };
-  # services.blueman.enable = true;
 
   services.pipewire = {
     enable = true;

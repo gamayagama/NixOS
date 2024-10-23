@@ -1,15 +1,19 @@
-{ inputs, pkgs, username, ... }:
 {
+  # inputs,
+  pkgs,
+  username,
+  ...
+}: {
   # Import other home-manager modules
-  
+
   # To import from personal flake exports (modules/home-manager):
   # outputs.homeManagerModules.<moduleName>
 
   # To import from other flakes (from flake inputs):
   # inputs.<inputFlake>.homeManagerModules.<moduleName>
-  # For an example, see nix-colors below: 
+  # For an example, see nix-colors below:
   # https://github.com/Misterio77/nix-colors/tree/b01f024090d2c4fc3152cd0cf12027a7b8453ba1
-  
+
   # To import local modules:
   # ../../modules/home/<moduleName>
   imports = [
