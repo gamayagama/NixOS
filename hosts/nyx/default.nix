@@ -19,15 +19,37 @@
     ../../modules/nixos/graphical
     ../../modules/nixos/sound
 
-    # Hardware scan
-    (modulesPath + "/installer/scan/not-detected.nix") 
+    # Hardware configuration
+    ./hardware.nix 
+    # (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  networking = {
-    useDHCP = lib.mkDefault true;
-    # networking.interfaces.eno2.useDHCP = lib.mkDefault true;
-    # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
-  };
+  services.fwupd.enable = true;
+
+  # boot.initrd = {
+  #   availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  #   kernelModules = [ ];
+  # };
+  # boot.kernelModules = [ "kvm-intel" ];
+  # boot.extraModulePackages = [ ];
+  #
+  # fileSystems."/" =
+  #   { device = "/dev/disk/by-uuid/e6b15647-3bd6-4329-bf86-5258009ff36c";
+  #     fsType = "ext4";
+  #   };
+  #
+  # fileSystems."/boot" =
+  #   { device = "/dev/disk/by-uuid/DBC7-E7AC";
+  #     fsType = "vfat";
+  #     options = [ "fmask=0022" "dmask=0022" ];
+  #   };
+  #
+  # swapDevices = [ ];
+  #
+  # networking.useDHCP = lib.mkDefault true;
+  #
+  # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  # hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   boot = {
     tmp.cleanOnBoot = true;
@@ -40,31 +62,7 @@
       efi.canTouchEfiVariables = true;
       timeout = 3;
     };
-
-    initrd = {
-      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-      kernelModules = [ ];
-    };
-    kernelModules = [ "kvm-intel" ];
-    extraModulePackages = [ ];
   };
-
-  fileSystems = {
-    "/" =
-      { device = "/dev/disk/by-uuid/091e4431-9ec8-49ef-b2e6-46ab667f6009";
-        fsType = "ext4";
-      };
-
-    "/boot" =
-      { device = "/dev/disk/by-uuid/0195-6FA6";
-        fsType = "vfat";
-      };
-  };
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/0a36c43d-d94c-44a6-a3e5-1714c9701c82"; } ];
-
-  nixpkgs.hostPlatform = lib.mkDefault "${system}";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   system.stateVersion = "23.11";
 }
