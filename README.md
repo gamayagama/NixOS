@@ -49,6 +49,7 @@ This section is mostly a TODO list for myself, but hopefully it can be a source 
 - [x] Clean up general structure
 - [x] Implement 'mkHost' and 'mkHome' functions  
       - [example from notusknot](https://github.com/notusknot/dotfiles-nix/tree/a034dcb6daff31ce50cdbc74a5972b1ef56ef3d7)
+- [x] Enable a formatter (Alejandra)
 - [ ] Learn how to use Overlays and devShells
 - [ ] Secret management  
       - [Available options](https://nixos.wiki/wiki/Comparison_of_secret_managing_schemes)  
@@ -58,7 +59,7 @@ This section is mostly a TODO list for myself, but hopefully it can be a source 
       - [community modules](https://github.com/nix-community/impermanence)
 - [ ] Implement custom options  
       - [Video by LibrePhoenix](https://piped.video/watch?v=Qull6TMQm4Q)
-- [ ] Learn about formatters
+- [ ] Configure pre-commit hooks for Alejandra formatting
 - [ ] Setup [Disko](https://github.com/nix-community/disko)
 - [ ] Maybe [flake.parts](https://flake.parts/)?
 
