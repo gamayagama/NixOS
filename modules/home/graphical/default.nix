@@ -1,14 +1,15 @@
 { config, pkgs, ... }:
 
 let
-  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+  startupScript = pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
-    ${pkgs.sxhkd}/bin/sxhkd &
-    killall -q hyprpaper || hyprpaper
+
+    sleep 1
+
+    ${pkgs.swww}/bin/swww img ${./wallpaper.png} &
   '';
 
-in {
-  wayland.windowManager.hyprland = {
+in { wayland.windowManager.hyprland = {
     enable = true;
     settings = {
       exec-once = ''
@@ -29,12 +30,12 @@ in {
         shadow_range = 4;
         "col.shadow" = "rgba(1a1a1aee)";
       };
-      input = {
+      # Dell laptop specific
+      device = {
+        name = "120a-touchpad";
+        natural_scroll = true;
         scroll_method = "2fg";
-        touchpad = {
-          natural_scroll = true;
-          disable_while_typing = true;
-        };
+        disable_while_typing = true;
       };
       gestures = {
         workspace_swipe = true;
@@ -42,27 +43,27 @@ in {
         workspace_swipe_forever = true;
       };
       misc = {
-        disable_hyprland_log = true;
-        disable_spash_rendering = true;
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
       };
+
+      "$mod" = "SUPER";
+
+      bind = [
+        "$mod_SHIFT, Return, exec, kitty"
+        "$mod, Return, exec, tofi-drun"
+        "$mod, Q, killactive"
+      ];
     };
   };
   services = {
-    sxhkd = {
-      enable = true;
-      keybindings = {
-        "super + Return" = "kitty";
-        "super + shift + Return" = "tofi";
-      };
-    };
-
-    hyprpaper = {
-      enable = true;
-      settings = {
-        preload = "./wallpaper.png";
-        wallpaper = "./wallpaper.png";
-      };
-    };
+    # sxhkd = {
+    #   enable = true;
+    #   keybindings = {
+    #     "super + Return" = "kitty";
+    #     "super + shift + Return" = "tofi";
+    #   };
+    # };
 
     flameshot.enable = true;
 
@@ -105,18 +106,22 @@ in {
       enable = true;
       settings = {
         font = "Hack";
-        font-size = 30;
+        font-size = 18;
 
         prompt-text = " ";
+        prompt-padding = 15;
 
+        width = "50%";
+        height = "35%";
         border-width = 0;
         outline-width = 0;
         padding-left = "5%";
         padding-top = "5%";
         padding-right = "0%";
         padding-bottom = "0%";
+        corner-radius = 5;
 
-        # background-color = "#000000";
+        background-color = "#060606DD";
         # text-color = "#FFFFFF";
         # selection-color = "#939393";
 
