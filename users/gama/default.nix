@@ -29,7 +29,7 @@
   # Install extra packages
   # This is needed for packages without home-manager config options
   home.packages = with pkgs; [
-    libreoffice
+    onlyoffice-bin
     obsidian
     beeper
     protonvpn-gui
