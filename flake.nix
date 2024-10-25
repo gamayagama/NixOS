@@ -51,7 +51,7 @@
 
     nixosConfigurations = {
       # host         host    system         user   fullName
-      nyx   = mkHost "nyx"   "x86_64-linux" "gama" "Gamayun Robakov";
+      nyx = mkHost "nyx" "x86_64-linux" "gama" "Gamayun Robakov";
       lethe = mkHost "lethe" "x86_64-linux" "gama" "Gamayun Robakov";
     };
 
