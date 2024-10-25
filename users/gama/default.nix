@@ -35,7 +35,7 @@
   home.packages = with pkgs; [
     onlyoffice-bin
     obsidian
-    # beeper
+    beeper
     protonvpn-gui
     bottom
     mpv
@@ -51,7 +51,7 @@
     freetube
     proton-pass
     qbittorrent
-    # discord
+    discord
   ];
 
   home = {
