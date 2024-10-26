@@ -28,7 +28,7 @@
     mkHost = hostname: system: username: fullName:
       nixpkgs.lib.nixosSystem {
         system = system;
-        specialArgs = {inherit inputs system hostname username fullName;};
+        specialArgs = {inherit pkgs inputs system hostname username fullName;};
         modules = [
           {environment.systemPackages = [alejandra.defaultPackage.${system}];}
           {networking.hostName = hostname;}
