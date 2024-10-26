@@ -1,9 +1,4 @@
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
   imports = [
     ../../modules/nixos/networking
     ../../modules/nixos/ssh
@@ -12,10 +7,14 @@
     ../../modules/nixos/fonts
     ../../modules/nixos/graphical
     ../../modules/nixos/sound
+    ../../modules/nixos/gaming
 
     # Hardware configuration
     ./hardware.nix
   ];
+
+  # Enable gaming module
+  gaming.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot = {
