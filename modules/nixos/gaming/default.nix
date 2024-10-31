@@ -33,10 +33,13 @@
         gamescopeSession.enable = true;
 
         # load extest library, used for Steam Input on Wayland
-        extest.enable = true;
+        # extest.enable = true;
       };
     };
     # Install Heroic launcher
-    environment.systemPackages = with pkgs; [heroic];
+    environment.systemPackages = with pkgs; [
+      heroic
+      protontricks
+    ];
   };
 }
