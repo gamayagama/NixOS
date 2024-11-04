@@ -43,7 +43,7 @@
     picard
     gapless
     # spek
-    yazi
+    # yazi
     teams-for-linux
     geogebra
     speedcrunch
