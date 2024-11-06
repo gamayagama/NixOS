@@ -52,6 +52,7 @@
     proton-pass
     qbittorrent
     discord
+    vcv-rack
   ];
 
   home = {
