@@ -60,10 +60,6 @@ in {
         config = toLua "require('Comment').setup()";
       }
       {
-        plugin = nvim-cmp;
-        config = toLuaFile ./config/plugins/cmp.lua;
-      }
-      {
         plugin = telescope-nvim;
         config = toLuaFile ./config/plugins/telescope.lua;
       }
@@ -86,6 +82,11 @@ in {
       # Required by other plugins
       plenary-nvim
       telescope-fzf-native-nvim
+      nvim-cmp
+      cmp_luasnip
+      cmp-nvim-lsp
+      luasnip
+      friendly-snippets
     ];
 
     extraLuaConfig = ''
