@@ -72,6 +72,10 @@ in {
         config = toLua "require('ibl').setup()";
       }
       {
+        plugin = nvim-autopairs;
+        config = toLua "require('nvim-autopairs').setup()";
+      }
+      {
         plugin = nvim-tree-lua;
         config = toLua "require('nvim-tree').setup()";
       }
