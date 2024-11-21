@@ -1,5 +1,4 @@
 local telescope = require'telescope'
-local builtin = require'telescope.builtin'
 
 telescope.setup({
   extensions = {
@@ -13,5 +12,3 @@ telescope.setup({
 })
 
 telescope.load_extension('fzf')
-
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})

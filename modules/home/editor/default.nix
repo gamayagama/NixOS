@@ -91,6 +91,7 @@ in {
 
     extraLuaConfig = ''
       ${builtins.readFile ./config/options.lua}
+      ${builtins.readFile ./config/keybindings.lua}
     '';
   };
 }
