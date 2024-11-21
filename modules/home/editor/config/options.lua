@@ -53,5 +53,9 @@ opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Disable word wrap
 wo.wrap = false
 
+-- Search settings
+opt.hlsearch = false
+opt.incsearch = true
+
 -- Preview substitutions
 opt.inccommand = 'split'
