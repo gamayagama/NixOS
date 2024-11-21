@@ -1,3 +1,4 @@
+
 function Map(mode, lhs, rhs, opts)
     local options = { noremap = true, silent = true }
     if opts then
@@ -8,10 +9,24 @@ end
 
 local telescopeBuiltin = require('telescope.builtin')
 
-Map('n', "<leader>ff", telescopeBuiltin.find_files, { desc = "Find files in directory"})
-Map('n', "<leader>pf", telescopeBuiltin.git_files, { desc = "Project files" })
--- TODO: this does not search in git project, so keybinding should reflect this
--- Consider a separate group for git tasks
-Map('n', "<leader>ps", function()
-  telescopeBuiltin.grep_string({ search = vim.fn.input("Project search > ") })
-end, { desc = "Project search" })
+-- Search using ripgrep
+-- NOTE: grep_string() doesn't work correctly with cwd option so only live_grep() is available
+Map('n', "<leader>s", function()
+  local root = string.gsub(vim.fn.system("git rev-parse --show-toplevel"), "\n", "")
+  if vim.v.shell_error == 0 then
+    telescopeBuiltin.live_grep({ cwd = root })
+  else
+    telescopeBuiltin.live_grep()
+  end
+end, { desc = "Search in files" })
+
+-- Open file
+Map('n', "<leader>o", function()
+  vim.fn.system("git rev-parse --is-inside-git-tree")
+  if vim.v.shell_error == 0
+  then
+    telescopeBuiltin.git_files()
+  else
+    telescopeBuiltin.find_files()
+  end
+end, { desc = "Open file" })
