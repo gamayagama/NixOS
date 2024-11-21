@@ -72,10 +72,6 @@ in {
         config = toLua "require('ibl').setup()";
       }
       {
-        plugin = no-neck-pain-nvim;
-        config = toLuaFile ./config/plugins/no-neck-pain.lua;
-      }
-      {
         plugin = nvim-tree-lua;
         config = toLua "require('nvim-tree').setup()";
       }
