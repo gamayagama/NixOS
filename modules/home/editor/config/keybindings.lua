@@ -8,8 +8,8 @@ end
 
 local telescopeBuiltin = require('telescope.builtin')
 
-Map('n', "<leader>ff", telescopeBuiltin.find_files, {})
-Map('n', "<leader>pf", telescopeBuiltin.git_files, {})
+Map('n', "<leader>ff", telescopeBuiltin.find_files, { desc = "Find files in directory"})
+Map('n', "<leader>pf", telescopeBuiltin.git_files, { desc = "Project files" })
 Map('n', "<leader>ps", function()
   telescopeBuiltin.grep_string({ search = vim.fn.input("Project search > ") })
-end)
+end, { desc = "Project search" })
