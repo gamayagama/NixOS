@@ -1,8 +1,7 @@
 {
   services = {
     displayManager = {
-      sddm.enable = true;
-      defaultSession = "cinnamon";
+      ly.enable = true;
     };
     # desktopManager.plasma6.enable = true;
     xserver = {
