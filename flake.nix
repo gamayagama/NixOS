@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs = {url = "github:nixos/nixpkgs/nixos-24.11";};
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     alejandra = {
@@ -18,10 +18,8 @@
     alejandra,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
-
     pkgs = import nixpkgs {
-      inherit system;
+      system = "x86_64-linux";
       config = {allowUnfree = true;};
     };
 
@@ -34,15 +32,13 @@
           {networking.hostName = hostname;}
           ./hosts/${hostname}
           ./modules/nixos/users
-        ];
-      };
-
-    mkHome = username:
-      home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {inherit inputs pkgs username;};
-        modules = [
-          ./users/${username}
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs pkgs username; };
+            home-manager.users.${username} = import ./users/${username};
+          }
         ];
       };
   in {
@@ -53,11 +49,6 @@
       # host         host    system         user   fullName
       nyx = mkHost "nyx" "x86_64-linux" "gama" "Gamayun Robakov";
       lethe = mkHost "lethe" "x86_64-linux" "gama" "Gamayun Robakov";
-    };
-
-    homeConfigurations = {
-      # user          user
-      gama = mkHome "gama";
     };
   };
 }

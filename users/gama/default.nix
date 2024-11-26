@@ -25,11 +25,6 @@
     ../../modules/home/graphical
   ];
 
-  nixpkgs = {
-    overlays = [];
-    config = {};
-  };
-
   # Install extra packages
   # This is needed for packages without home-manager config options
   home.packages = with pkgs; [
