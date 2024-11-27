@@ -9,6 +9,11 @@
       url = "github:kamadorueda/alejandra";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {url = "github:hyprwm/Hyprland";};
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs = {
@@ -36,7 +41,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs pkgs username; };
+            home-manager.extraSpecialArgs = {inherit inputs pkgs username;};
             home-manager.users.${username} = import ./users/${username};
           }
         ];
