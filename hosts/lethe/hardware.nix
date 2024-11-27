@@ -45,4 +45,8 @@
       enable32Bit = true;
     };
   };
+
+  # TODO: Test this setting, as see in:
+  # https://github.com/sjcobb2022/nixos-config/blob/main/hosts/slaptop/default.nix
+  # boot.kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
 }
