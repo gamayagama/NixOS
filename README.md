@@ -22,7 +22,6 @@ As I develop this project, I aim for a setup that:
 - Makes it easy to setup new hardware
 - Is fully (or mostly) declarative
 - Consists of highly readable code
-- Does not rely heavily on external tools
 - Is reasonably stable, optimised, and secure
 
 ## Structure
@@ -34,7 +33,8 @@ Below you will find an overview of the general file structure, and what the purp
 ├─ assets       ● Wallpapers/icons/themes/etc.
 ├─ bin          ● Scripts
 ├─ hosts
-│  ╰─ nyx       ● Laptop configuration
+│  ├─ lethe     ● Main PC
+│  ╰─ nyx       ● Laptop
 ├─ modules           
 │  ├─ home      ● home-manager modules
 │  ╰─ nixos     ● system (NixOS) modules
@@ -47,9 +47,10 @@ Below you will find an overview of the general file structure, and what the purp
 This section is mostly a TODO list for myself, but hopefully it can be a source of inspiration as well!
 
 - [x] Clean up general structure
-- [x] Implement 'mkHost' and 'mkHome' functions  
+- [x] Implement 'mkHost' function  
       - [example from notusknot](https://github.com/notusknot/dotfiles-nix/tree/a034dcb6daff31ce50cdbc74a5972b1ef56ef3d7)
 - [x] Enable a formatter (Alejandra)
+- [ ] Make greater use of the module setup, as seen in the gaming module
 - [ ] Learn how to use Overlays and devShells
 - [ ] Secret management  
       - [Available options](https://nixos.wiki/wiki/Comparison_of_secret_managing_schemes)  
@@ -57,8 +58,6 @@ This section is mostly a TODO list for myself, but hopefully it can be a source 
 - [ ] Establish impermanence with tmpfs  
       - [Lan Tian's config](https://github.com/xddxdd/nixos-config/tree/55697a820bdc019d867ab52fa89e2b759c242b03)  
       - [community modules](https://github.com/nix-community/impermanence)
-- [ ] Implement custom options  
-      - [Video by LibrePhoenix](https://piped.video/watch?v=Qull6TMQm4Q)
 - [ ] Configure pre-commit hooks for Alejandra formatting
 - [ ] Setup [Disko](https://github.com/nix-community/disko)
 - [ ] Maybe [flake.parts](https://flake.parts/)?
