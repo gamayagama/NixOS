@@ -48,46 +48,84 @@ in {
       ];
     };
     settings = {
+      # Initiate various needed programs/utils
       exec-once = [
         "uwsm finalize"
         "${startupScript}/bin/start"
       ];
-      "$mod" = "SUPER";
+
+      # General settings
       general = {
         gaps_in = 2;
         gaps_out = 4;
         border_size = 1;
+        layout = "master";
       };
-      bind =
-        [
-          # Basic functionality
-          "$mod, Q, killactive"
-          "$mod, F, togglefloating"
-          "$mod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-          # Launch common programs
-          "$mod_SHIFT, Return, exec, kitty"
-          "$mod, Return, exec, rofi -show drun"
+      animations = {
+        animation = [
+          "windows, 1, 2, default, popin 80%"
+          "border, 1, 3, default"
+          "fade, 1, 1, default"
+          "workspaces, 1, 2, default"
+        ];
+      };
 
-          # Vim-like navigation
-          "$mod, H, movefocus, l"
-          "$mod, J, movefocus, d"
-          "$mod, K, movefocus, u"
-          "$mod, L, movefocus, r"
-        ]
-        ++ (
-          # workspaces
-          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-          builtins.concatLists (builtins.genList (
-              i: let
-                ws = i + 1;
-              in [
-                "$mod, code:1${toString i}, workspace, ${toString ws}"
-                "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-              ]
-            )
-            9)
-        );
+      # Misc.
+      misc = {
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+      };
+
+      # Decorations
+      decoration = {
+        rounding = 4;
+        blur = {
+          size = 12;
+          passes = 2;
+        };
+      };
+
+      # Layouts
+      master = {
+        orientation = "center";
+      };
+
+      dwindle = {
+        pseudotile = true;
+        preserve_split = true;
+      };
+
+      # Bindings
+      "$mod" = "SUPER";
+      bind = [
+        # Basic functionality
+        "$mod, Q, killactive"
+        "$mod, F, togglefloating"
+        "$mod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+
+        # Launch common programs
+        "$mod_SHIFT, Return, exec, kitty"
+        "$mod, Return, exec, rofi -show drun"
+
+        # Vim-like navigation
+        "$mod, H, movefocus, l"
+        "$mod, J, movefocus, d"
+        "$mod, K, movefocus, u"
+        "$mod, L, movefocus, r"
+      ] ++ (
+        # workspaces
+        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+        builtins.concatLists (builtins.genList (
+            i: let
+              ws = i + 1;
+            in [
+              "$mod, code:1${toString i}, workspace, ${toString ws}"
+              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            ]
+          )
+        9)
+      );
     };
   };
 
@@ -224,16 +262,5 @@ in {
       enable = true;
       defaultTimeout = 4500;
     };
-    # flameshot.enable = true;
   };
-
-  # Enable systemd target unit needed for flameshot
-  # See [Unit tray.target not found](https://github.com/nix-community/home-manager/issues/2064) for more information
-  # credit to user 'zeorin' for the workaround
-  # systemd.user.targets.tray = {
-  #   Unit = {
-  #     Description = "Home Manager System Tray";
-  #     Requires = ["graphical-session-pre.target"];
-  #   };
-  # };
 }
