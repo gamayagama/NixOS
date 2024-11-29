@@ -6,13 +6,13 @@
   startupScript = pkgs.writeShellScriptBin "start" ''
     ${pkgs.swww}/bin/swww-daemon &
     ${pkgs.mako}/bin/mako &
+    ${pkgs.waybar}/bin/waybar &
     systemctl --user enable --now hyprpolkitagent.service
     wl-paste --watch cliphist store
     udiskie &
 
     sleep 1
 
-    ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww img ${./wallpaper.png} &
   '';
 in {
@@ -73,7 +73,7 @@ in {
 
       # Misc.
       misc = {
-        disable_hyprland_logo = true;
+        # disable_hyprland_logo = true; # DO NOT ENABLE: Causes issues rendering various programs.
         disable_splash_rendering = true;
       };
 
