@@ -72,6 +72,11 @@ in {
         ];
       };
 
+      device = {
+        name = "asue120b:00-04f3:31c0-touchpad";
+        natural_scroll = true;
+      };
+
       # Misc.
       misc = {
         # disable_hyprland_logo = true; # DO NOT ENABLE: Causes issues rendering various programs.
