@@ -1,7 +1,9 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   toLua = str: "lua << EOF\n${str}\nEOF\n";
   toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-in {
+in
+{
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -31,6 +33,14 @@ in {
       #   config = "vimscript code";
       # }
 
+      {
+        plugin = leap-nvim;
+        config = toLua "require('leap').create_default_mappings()";
+      }
+      {
+        plugin = oil-nvim;
+        config = toLua "require('oil').setup()";
+      }
       {
         plugin = nvim-lspconfig;
         config = toLuaFile ./config/plugins/lsp.lua;
@@ -74,6 +84,10 @@ in {
       {
         plugin = nvim-autopairs;
         config = toLua "require('nvim-autopairs').setup()";
+      }
+      {
+        plugin = nvim-surround;
+        config = toLua "require('nvim-surround').setup()";
       }
       {
         plugin = nvim-tree-lua;
