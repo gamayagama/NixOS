@@ -1,12 +1,8 @@
 {
   inputs = {
-    nixpkgs = {url = "github:nixos/nixpkgs/nixos-24.11";};
+    nixpkgs = {url = "github:nixos/nixpkgs/nixos-unstable";};
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    alejandra = {
-      url = "github:kamadorueda/alejandra";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {url = "github:hyprwm/Hyprland";};
@@ -16,44 +12,52 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    alejandra,
-    ...
-  } @ inputs: let
-    pkgs = import nixpkgs {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
       system = "x86_64-linux";
-      config = {allowUnfree = true;};
-    };
-
-    mkHost = hostname: system: username: fullName:
-      nixpkgs.lib.nixosSystem {
-        system = system;
-        specialArgs = {inherit pkgs inputs system hostname username fullName;};
-        modules = [
-          {environment.systemPackages = [alejandra.defaultPackage.${system}];}
-          {networking.hostName = hostname;}
-          ./hosts/${hostname}
-          ./modules/nixos/users
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {inherit inputs pkgs username;};
-            home-manager.users.${username} = import ./users/${username};
-          }
-        ];
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
       };
-  in {
-    # overlays.default = final: prev: {};
-    # devShells.${system}.default = {};
 
-    nixosConfigurations = {
-      # host         host    system         user   fullName
-      nyx = mkHost "nyx" "x86_64-linux" "gama" "Gamayun Robakov";
-      lethe = mkHost "lethe" "x86_64-linux" "gama" "Gamayun Robakov";
+      mkHost =
+        hostname: system: username: fullName:
+        nixpkgs.lib.nixosSystem {
+          inherit pkgs system;
+          specialArgs = { inherit inputs system hostname username fullName; };
+          modules = [
+            # { environment.systemPackages = [ inputs.alejandra.defaultPackage.${system} ]; }
+            { networking.hostName = hostname; }
+            ./hosts/${hostname}
+            ./modules/nixos/users
+            home-manager.nixosModules.home-manager
+            inputs.stylix.nixosModules.stylix
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs pkgs username; };
+              home-manager.users.${username} = import ./users/${username};
+            }
+          ];
+        };
+    in
+    {
+      # formatter.${system} = inputs.alejandra.defaultPackage.${system};
+      # overlays.default = final: prev: {};
+      # devShells.${system}.default = {};
+
+      nixosConfigurations = {
+        # hostname = "host" "system" "user" "fullName"
+        nyx = mkHost "nyx" "x86_64-linux" "gama" "Gamayun Robakov";
+        lethe = mkHost "lethe" "x86_64-linux" "gama" "Gamayun Robakov";
+      };
     };
-  };
 }
