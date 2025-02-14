@@ -26,6 +26,7 @@ in {
       wleave
       cliphist
       udiskie
+      pavucontrol
     ];
     sessionVariables = {
       QT_QPA_PLATFORM = "wayland";
@@ -140,7 +141,7 @@ in {
 
           modules-left = ["hyprland/workspaces"];
           modules-center = ["clock"];
-          modules-right = ["network" "custom/screenshot" "custom/power"];
+          modules-right = ["custom/screenshot" "network" "pulseaudio" "battery" "custom/power"];
 
           "hyprland/workspaces" = {
             format = "{icon}";
@@ -168,6 +169,33 @@ in {
             format-wifi = "&#8195;{signalStrength}%";
             format-disconnected = "󰣼 ";
             on-click = "kitty nmtui";
+          };
+          "pulseaudio" = {
+            format = "{icon}&#8195;{volume}";
+            format-bluetooth = "&#8195;{icon}&#8195;{volume}";
+            format-icons = {
+              default = [
+                " "
+                " "
+              ];
+            };
+            on-click = "pavucontrol";
+          };
+          "battery" = {
+            interval = 60;
+            states = {
+              warning = 30;
+              critical = 15;
+            };
+            format = "{icon}&#8195;{capacity}";
+            format-icons = [
+              " "
+              " "
+              " "
+              " "
+              " "
+            ];
+            max-length = 25;
           };
           "custom/screenshot" = {
             tooltip = false;
