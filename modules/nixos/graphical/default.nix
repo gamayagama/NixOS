@@ -16,9 +16,6 @@
     displayManager = {
       ly.enable = true;
     };
-    xserver = {
-      enable = true;
-      desktopManager.cinnamon.enable = true;
-    };
+    desktopManager.plasma6.enable = true;
   };
 }
