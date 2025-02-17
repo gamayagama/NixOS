@@ -19,10 +19,13 @@
     ../../modules/nixos/fonts
     ../../modules/nixos/graphical
     ../../modules/nixos/sound
+    ../../modules/nixos/gaming
 
     # Hardware configuration
     ./hardware.nix
   ];
+
+  gaming.enable = true;
 
   services.fwupd.enable = true;
 
