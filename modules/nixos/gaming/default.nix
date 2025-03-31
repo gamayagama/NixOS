@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   options = {
     gaming.enable = lib.mkEnableOption "Enables the gaming module";
   };
@@ -27,7 +28,7 @@
         # localNetworkGameTransfers.openFirewall = true;
         # dedicatedServer.openFirewall = true;
 
-        extraCompatPackages = with pkgs; [proton-ge-bin];
+        extraCompatPackages = with pkgs; [ proton-ge-bin ];
 
         # Run games in micro compositor for better upscaling in some cases
         gamescopeSession.enable = true;

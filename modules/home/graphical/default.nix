@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   startupScript = pkgs.writeShellScriptBin "start" ''
     ${pkgs.swww}/bin/swww-daemon &
     ${pkgs.mako}/bin/mako &
@@ -15,7 +16,8 @@
 
     ${pkgs.swww}/bin/swww img ${./wallpaper.png} &
   '';
-in {
+in
+{
   # Dependencies
   home = {
     packages = with pkgs; [
@@ -39,10 +41,10 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.default;
-    plugins = [];
+    plugins = [ ];
     systemd = {
       enable = false; # This setting conflicts with uwsm
-      variables = ["--all"];
+      variables = [ "--all" ];
       extraCommands = [
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"
@@ -104,34 +106,39 @@ in {
 
       # Bindings
       "$mod" = "SUPER";
-      bind = [
-        # Basic functionality
-        "$mod, Q, killactive"
-        "$mod, F, togglefloating"
-        "$mod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+      bind =
+        [
+          # Basic functionality
+          "$mod, Q, killactive"
+          "$mod, F, togglefloating"
+          "$mod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-        # Launch common programs
-        "$mod_SHIFT, Return, exec, kitty"
-        "$mod, Return, exec, rofi -show drun"
+          # Launch common programs
+          "$mod_SHIFT, Return, exec, kitty"
+          "$mod, Return, exec, rofi -show drun"
 
-        # Vim-like navigation
-        "$mod, H, movefocus, l"
-        "$mod, J, movefocus, d"
-        "$mod, K, movefocus, u"
-        "$mod, L, movefocus, r"
-      ] ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (builtins.genList (
-            i: let
-              ws = i + 1;
-            in [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
+          # Vim-like navigation
+          "$mod, H, movefocus, l"
+          "$mod, J, movefocus, d"
+          "$mod, K, movefocus, u"
+          "$mod, L, movefocus, r"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+          builtins.concatLists (
+            builtins.genList (
+              i:
+              let
+                ws = i + 1;
+              in
+              [
+                "$mod, code:1${toString i}, workspace, ${toString ws}"
+                "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+              ]
+            ) 9
           )
-        9)
-      );
+        );
     };
   };
 
@@ -144,9 +151,15 @@ in {
           position = "top";
           spacing = 2;
 
-          modules-left = ["hyprland/workspaces"];
-          modules-center = ["clock"];
-          modules-right = ["custom/screenshot" "network" "pulseaudio" "battery" "custom/power"];
+          modules-left = [ "hyprland/workspaces" ];
+          modules-center = [ "clock" ];
+          modules-right = [
+            "custom/screenshot"
+            "network"
+            "pulseaudio"
+            "battery"
+            "custom/power"
+          ];
 
           "hyprland/workspaces" = {
             format = "{icon}";
@@ -161,7 +174,9 @@ in {
               "8" = "Ⅷ";
               "9" = "Ⅸ";
             };
-            persistent-workspaces = {"*" = 9;}; # Show all workspaces
+            persistent-workspaces = {
+              "*" = 9;
+            }; # Show all workspaces
           };
           "clock" = {
             tooltip = false;

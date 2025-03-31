@@ -6,7 +6,8 @@ let
     diff = "diff --color";
     cat = "bat";
   };
-in {
+in
+{
   programs = {
     zsh = {
       enable = true;
@@ -39,7 +40,9 @@ in {
           compact = true;
           use_pager = false;
         };
-        updates = {auto_update = true;};
+        updates = {
+          auto_update = true;
+        };
       };
     };
   };

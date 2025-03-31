@@ -1,6 +1,7 @@
 let
   myLocale = "en_US.UTF-8";
-in {
+in
+{
   time.timeZone = "Europe/Copenhagen";
   i18n = {
     defaultLocale = "${myLocale}";

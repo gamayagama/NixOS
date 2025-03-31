@@ -1,7 +1,8 @@
 {
   # inputs,
   ...
-}: {
+}:
+{
   # Import system (NixOS) modules
   imports = [
     # To import from personal flake exports (modules/nixos):

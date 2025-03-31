@@ -2,7 +2,7 @@
   nix = {
     settings = {
       auto-optimise-store = true;
-      allowed-users = ["@wheel"];
+      allowed-users = [ "@wheel" ];
       # Cachix
       substituters = [
         "https://hyprland.cachix.org"

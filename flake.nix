@@ -1,17 +1,25 @@
 {
   inputs = {
-    nixpkgs = {url = "github:nixos/nixpkgs/nixos-unstable";};
-    nixpkgs-stable = {url = "github:nixos/nixpkgs/nixos-24.11";};
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
+    nixpkgs-stable = {
+      url = "github:nixos/nixpkgs/nixos-24.11";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {url = "github:hyprwm/Hyprland";};
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    zen-browser = {url = "github:0xc000022070/zen-browser-flake";};
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+    };
   };
 
   outputs =
@@ -32,14 +40,24 @@
 
       pkgs-stable = import inputs.nixpkgs-stable {
         inherit system;
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+        };
       };
 
       mkHost =
         hostname: system: username: fullName:
         nixpkgs.lib.nixosSystem {
           inherit pkgs system;
-          specialArgs = { inherit inputs system hostname username fullName; };
+          specialArgs = {
+            inherit
+              inputs
+              system
+              hostname
+              username
+              fullName
+              ;
+          };
           modules = [
             # { environment.systemPackages = [ inputs.alejandra.defaultPackage.${system} ]; }
             { networking.hostName = hostname; }
@@ -47,10 +65,19 @@
             ./modules/nixos/users
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs pkgs pkgs-stable username; };
-              home-manager.users.${username} = import ./users/${username};
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = {
+                  inherit
+                    inputs
+                    pkgs
+                    pkgs-stable
+                    username
+                    ;
+                };
+                users.${username} = import ./users/${username};
+              };
             }
           ];
         };

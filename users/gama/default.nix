@@ -4,7 +4,8 @@
   pkgs-stable,
   username,
   ...
-}: {
+}:
+{
   # Import other home-manager modules
 
   # To import from personal flake exports (modules/home-manager):
@@ -28,38 +29,42 @@
 
   # Install extra packages
   # This is needed for packages without home-manager config options
-  home.packages = with pkgs; [
-    onlyoffice-bin
-    obsidian
-    beeper
-    protonvpn-gui
-    bottom
-    mpv
-    nicotine-plus
-    picard
-    gapless
-    spek
-    audacity
-    # yazi
-    teams-for-linux
-    geogebra
-    speedcrunch
-    pandoc
-    freetube
-    proton-pass
-    qbittorrent
-    discord
-    rclone
-    rclone-browser
-    inputs.zen-browser.packages."${system}".default
-    halloy
-    hexchat
-    calibre
-    jdk
-    adoptopenjdk-icedtea-web
-    unrar
-    geany
-  ] ++ [ pkgs-stable.vcv-rack ];
+  home.packages =
+    with pkgs;
+    [
+      onlyoffice-bin
+      obsidian
+      beeper
+      protonvpn-gui
+      bottom
+      mpv
+      nicotine-plus
+      picard
+      gapless
+      spek
+      audacity
+      yazi
+      teams-for-linux
+      geogebra
+      speedcrunch
+      pandoc
+      freetube
+      proton-pass
+      qbittorrent
+      discord
+      rclone
+      rclone-browser
+      inputs.zen-browser.packages."${system}".default
+      halloy
+      hexchat
+      calibre
+      jdk
+      adoptopenjdk-icedtea-web
+      unrar
+      geany-with-vte
+      ncdu
+    ]
+    ++ [ pkgs-stable.vcv-rack ];
 
   home = {
     username = "${username}";
