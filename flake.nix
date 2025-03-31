@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs = {url = "github:nixos/nixpkgs/nixos-unstable";};
+    nixpkgs-stable = {url = "github:nixos/nixpkgs/nixos-24.11";};
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -10,6 +11,7 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    zen-browser = {url = "github:0xc000022070/zen-browser-flake";};
   };
 
   outputs =
@@ -28,6 +30,11 @@
         };
       };
 
+      pkgs-stable = import inputs.nixpkgs-stable {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+
       mkHost =
         hostname: system: username: fullName:
         nixpkgs.lib.nixosSystem {
@@ -42,7 +49,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs pkgs username; };
+              home-manager.extraSpecialArgs = { inherit inputs pkgs pkgs-stable username; };
               home-manager.users.${username} = import ./users/${username};
             }
           ];

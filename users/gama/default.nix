@@ -1,6 +1,7 @@
 {
-  # inputs,
+  inputs,
   pkgs,
+  pkgs-stable,
   username,
   ...
 }: {
@@ -37,7 +38,8 @@
     nicotine-plus
     picard
     gapless
-    # spek
+    spek
+    audacity
     # yazi
     teams-for-linux
     geogebra
@@ -47,8 +49,17 @@
     proton-pass
     qbittorrent
     discord
-    vcv-rack
-  ];
+    rclone
+    rclone-browser
+    inputs.zen-browser.packages."${system}".default
+    halloy
+    hexchat
+    calibre
+    jdk
+    adoptopenjdk-icedtea-web
+    unrar
+    geany
+  ] ++ [ pkgs-stable.vcv-rack ];
 
   home = {
     username = "${username}";
