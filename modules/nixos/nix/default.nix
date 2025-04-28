@@ -3,6 +3,7 @@
     settings = {
       auto-optimise-store = true;
       allowed-users = [ "@wheel" ];
+      trusted-users = [ "@wheel" ];
       # Cachix
       substituters = [
         "https://hyprland.cachix.org"
