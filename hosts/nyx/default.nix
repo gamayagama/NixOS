@@ -1,5 +1,6 @@
 {
   # inputs,
+  pkgs,
   ...
 }:
 {
@@ -26,9 +27,16 @@
     ./hardware.nix
   ];
 
+  environment.systemPackages = with pkgs; [ wineWowPackages.stable winetricks ];
+
   gaming.enable = true;
 
   services.fwupd.enable = true;
+
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
+
 
   boot = {
     tmp.cleanOnBoot = true;
