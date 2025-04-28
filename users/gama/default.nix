@@ -25,6 +25,7 @@
     ../../modules/home/browser
     ../../modules/home/development
     ../../modules/home/graphical
+    ../../modules/home/mail
   ];
 
   # Install extra packages
