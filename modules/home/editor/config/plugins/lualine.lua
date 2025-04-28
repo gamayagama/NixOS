@@ -161,7 +161,7 @@ ins_right {
   function()
     local noLSP = 'No LSP active'
     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-    local clients = vim.lsp.get_active_clients()
+    local clients = vim.lsp.get_clients()
     if next(clients) == nil then
       return noLSP
     end
