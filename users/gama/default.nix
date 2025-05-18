@@ -56,7 +56,6 @@
       rclone
       rclone-browser
       inputs.zen-browser.packages."${system}".default
-      halloy
       hexchat
       calibre
       jdk
