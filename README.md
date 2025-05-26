@@ -12,7 +12,7 @@ NOTE: The learning curve is pretty steep, and the documentation on the official 
 This is my personal configuration of NixOS, and the various programs I use. Currently I only have it setup for my PC and laptop, but I plan to eventually include a configuration for a homelab and/or [VPS](https://en.wikipedia.org/wiki/Virtual_private_server) as well.
 
 > [!IMPORTANT]
-> It should be noted that this setup is still in it's infancy, and I cannot guarantee that it will work well, or at all, on your device. Please only use this a reference for now!
+> It should be noted that this setup is still in it's infancy, and I cannot guarantee that it will work well, or at all, on your device. Please only use this as a reference for now!
 
 ## Philosophy
 
