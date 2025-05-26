@@ -5,7 +5,7 @@ let
     llt = "eza -lAhT --group-directories-first --time-style='+%Y-%m-%d %H:%M' --total-size";
     ping = "ping -c 5";
     cat = "bat";
-    catp = "bat --style=-grid,-numbers"
+    catp = "bat --style=-grid,-numbers";
   };
 in
 {
