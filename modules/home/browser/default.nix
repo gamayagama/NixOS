@@ -1,12 +1,10 @@
 {
   programs = {
-    # May be replaced by librewolf later, but works better out of the box
     firefox = {
       enable = true;
+      policies = {
+        BlockAboutConfig = true;
+      };
     };
-    # librewolf = {
-    #   enable = true;
-    #   settings = {};
-    # };
   };
 }
