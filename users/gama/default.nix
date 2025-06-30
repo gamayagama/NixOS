@@ -41,7 +41,6 @@
       mpv
       nicotine-plus
       picard
-      gapless
       spek
       audacity
       yazi
@@ -63,6 +62,7 @@
       unrar
       geany-with-vte
       ncdu
+      feishin
     ]
     ++ [ pkgs-stable.vcv-rack ];
 
