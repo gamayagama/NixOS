@@ -18,7 +18,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     zen-browser = {
-      url = "github:MarceColl/zen-browser-flake";
+      url = "github:0xc000022070/zen-browser-flake";
     };
   };
 
