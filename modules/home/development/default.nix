@@ -6,24 +6,22 @@
       userName = "Gamayun Robakov";
       aliases = {
         # Basics
-        g = "git";
-
-        gs = "git status -sb";
-        ga = "git add";
-        gpl = "git pull";
-        gpu = "git push";
-        gb = "git branch -v";
-        gba = "git branch -va";
-        gd = "git diff --word-diff";
-        gci = "git commit";
-        gco = "git checkout";
-        gcl = "git clone";
-        gm = "git merge";
-        gr = "git remote";
-        grb = "git rebase";
+        s = "status -sb";
+        a = "add";
+        pl = "pull";
+        ps = "push";
+        b = "branch -v";
+        ba = "branch -va";
+        d = "diff --word-diff";
+        ci = "commit";
+        co = "checkout";
+        cl = "clone";
+        m = "merge";
+        r = "remote";
+        rb = "rebase";
         # Advanced
-        gl = "log --graph --decorate --pretty=oneline --abbrev-commit";
-        gla = "log --graph --decorate --pretty=oneline --abbrev-commit --all";
+        l = "log --graph --decorate --pretty=oneline --abbrev-commit";
+        la = "log --graph --decorate --pretty=oneline --abbrev-commit --all";
       };
       extraConfig = {
         init = {
