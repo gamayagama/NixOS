@@ -308,7 +308,7 @@ in
   services = {
     mako = {
       enable = true;
-      defaultTimeout = "4500";
+      settings.default-timeout = "4500";
     };
   };
 }
