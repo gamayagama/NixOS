@@ -1,14 +1,14 @@
 {
   inputs = {
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
-    };
-    nixpkgs-stable = {
-      url = "github:nixos/nixpkgs/nixos-24.11";
+      url = "https://flakehub.com/f/NixOS/nixpkgs/0";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "https://flakehub.com/f/nix-community/home-manager/0";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    determinate = {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
@@ -38,13 +38,6 @@
         };
       };
 
-      pkgs-stable = import inputs.nixpkgs-stable {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-      };
-
       mkHost =
         hostname: system: username: fullName:
         nixpkgs.lib.nixosSystem {
@@ -64,6 +57,7 @@
             ./hosts/${hostname}
             ./modules/nixos/users
             home-manager.nixosModules.home-manager
+            inputs.determinate.nixosModules.default
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -72,7 +66,6 @@
                   inherit
                     inputs
                     pkgs
-                    pkgs-stable
                     username
                     ;
                 };

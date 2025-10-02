@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  pkgs-stable,
   username,
   ...
 }:
@@ -66,8 +65,8 @@
       geany-with-vte
       ncdu
       feishin
-    ]
-    ++ [ pkgs-stable.vcv-rack ];
+      vcv-rack
+    ];
 
   home = {
     username = "${username}";
