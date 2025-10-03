@@ -16,15 +16,15 @@
   # https://github.com/Misterio77/nix-colors/tree/b01f024090d2c4fc3152cd0cf12027a7b8453ba1
 
   # To import local modules:
-  # ../../modules/home/<moduleName>
+  # "${inputs.self}/modules/home/<moduleName>"
   imports = [
-    ../../modules/home/shell
-    ../../modules/home/terminal
-    ../../modules/home/editor
-    ../../modules/home/browser
-    ../../modules/home/development
-    ../../modules/home/graphical
-    ../../modules/home/mail
+    "${inputs.self}/modules/home/shell"
+    "${inputs.self}/modules/home/terminal"
+    "${inputs.self}/modules/home/editor"
+    "${inputs.self}/modules/home/browser"
+    "${inputs.self}/modules/home/development"
+    "${inputs.self}/modules/home/graphical"
+    "${inputs.self}/modules/home/mail"
 
     inputs.zen-browser.homeModules.twilight
   ];

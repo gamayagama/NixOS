@@ -1,5 +1,5 @@
 {
-  # inputs,
+  inputs,
   pkgs,
   ...
 }:
@@ -13,15 +13,15 @@
     # inputs.<inputFlake>.nixosModules.<moduleName>
 
     # To import local modules:
-    # ../../modules/nixos/<moduleName>
-    ../../modules/nixos/networking
-    ../../modules/nixos/ssh
-    ../../modules/nixos/nix
-    ../../modules/nixos/locale
-    ../../modules/nixos/fonts
-    ../../modules/nixos/graphical
-    ../../modules/nixos/sound
-    ../../modules/nixos/gaming
+    # "${inputs.self}/modules/nixos/<moduleName>"
+    "${inputs.self}/modules/nixos/networking"
+    "${inputs.self}/modules/nixos/ssh"
+    "${inputs.self}/modules/nixos/nix"
+    "${inputs.self}/modules/nixos/locale"
+    "${inputs.self}/modules/nixos/fonts"
+    "${inputs.self}/modules/nixos/graphical"
+    "${inputs.self}/modules/nixos/sound"
+    "${inputs.self}/modules/nixos/gaming"
 
     # Hardware configuration
     ./hardware.nix
