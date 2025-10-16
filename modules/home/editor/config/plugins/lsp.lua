@@ -3,7 +3,6 @@
 -- ╰───────────────────╯
 
 local cmp = require'cmp'
-local lsp = require'lspconfig'
 local luasnip = require'luasnip'
 
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -43,42 +42,46 @@ cmp.setup {
 -- │  NIX SERVER  │
 -- ╰──────────────╯
 
-lsp.nixd.setup({
-  capabilities = capabilities,
-  cmd = { "nixd" },
-  settings = {
-    nixd = {
-      nixpkgs = {
-        expr = "import (builtins.getFlake '/home/gama/.config/nixos').inputs.nixpkgs { }",
-      },
-      formatting = {
-        command = { "alejandra" },
-      },
-      options = {
-        nixos = {
-          expr = "(builtins.getFlake '/home/gama/.config/nixos').nixosConfigurations.nyx.options",
-        },
-        home_manager = {
-          expr = "(builtins.getFlake '/home/gama/.config/nixos').homeConfigurations.gama.options",
-        },
-      },
-    },
-  },
-})
+
+
+--vim.lsp.config(
+--  nixd.setup({
+--    capabilities = capabilities,
+--    cmd = { "nixd" },
+--    settings = {
+--      nixd = {
+--        nixpkgs = {
+--          expr = "import (builtins.getFlake '/home/gama/.config/nixos').inputs.nixpkgs { }",
+--        },
+--        formatting = {
+--          command = { "alejandra" },
+--        },
+--        options = {
+--          nixos = {
+--            expr = "(builtins.getFlake '/home/gama/.config/nixos').nixosConfigurations.nyx.options",
+--          },
+--          home_manager = {
+--            expr = "(builtins.getFlake '/home/gama/.config/nixos').homeConfigurations.gama.options",
+--          },
+--        },
+--      },
+--    },
+--  })
 
 -- ╭──────────────╮
 -- │  LUA SERVER  │
 -- ╰──────────────╯
 
-lsp.lua_ls.setup {
-  capabilities = capabilities,
-  settings = {
-    flake = { autoArchive = true },
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
-  }
-}
+--  lua_ls.setup {
+--    capabilities = capabilities,
+--    settings = {
+--      flake = { autoArchive = true },
+--      Lua = {
+--        diagnostics = {
+--          globals = { 'vim' }
+--        }
+--      }
+--    }
+--  }
+--)
 
