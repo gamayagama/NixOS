@@ -66,6 +66,7 @@
       ncdu
       feishin
       vcv-rack
+      beeper
     ];
 
   home = {
