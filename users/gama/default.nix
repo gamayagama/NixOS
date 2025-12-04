@@ -36,7 +36,7 @@
   home.packages =
     with pkgs;
     [
-      onlyoffice-bin
+      onlyoffice-desktopeditors
       obsidian
       beeper
       protonvpn-gui
