@@ -53,6 +53,7 @@
           };
           modules = [
             # { environment.systemPackages = [ inputs.alejandra.defaultPackage.${system} ]; }
+            { environment.defaultPackages = []; }
             { networking.hostName = hostname; }
             ./hosts/${hostname}
             ./modules/nixos/users
