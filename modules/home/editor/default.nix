@@ -34,10 +34,6 @@ in
       # }
 
       {
-        plugin = leap-nvim;
-        config = toLua "require('leap').create_default_mappings()";
-      }
-      {
         plugin = oil-nvim;
         config = toLua "require('oil').setup()";
       }
