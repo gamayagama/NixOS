@@ -26,10 +26,8 @@
     "${inputs.self}/modules/home/graphical"
     "${inputs.self}/modules/home/mail"
 
-    inputs.zen-browser.homeModules.twilight
   ];
 
-  programs.zen-browser.enable = true;
 
   # Install extra packages
   # This is needed for packages without home-manager config options
@@ -67,7 +65,7 @@
       feishin
       vcv-rack
       beeper
-    ];
+    ] ++ [inputs.zen-browser.packages.${pkgs.system}.default];
 
   home = {
     username = "${username}";
