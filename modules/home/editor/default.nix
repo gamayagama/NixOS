@@ -1,8 +1,5 @@
 { pkgs, ... }:
-let
-  toLua = str: "lua << EOF\n${str}\nEOF\n";
-  toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-in
+
 {
   programs.neovim = {
     enable = true;
@@ -10,7 +7,8 @@ in
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-
+    withPython3 = false;
+    withRuby = false;
     extraPackages = with pkgs; [
       fd
       ripgrep
@@ -22,72 +20,76 @@ in
       lua-language-server # Lua
     ];
     plugins = with pkgs.vimPlugins; [
-      # Plugins can be loaded and configured at once
-      # See example below:
-
-      # {
-      #   plugin = plugin-name;
-      # Use the appropriate config method
-      #   config = toLuaFile ./configfile.lua;
-      #   config = toLua "lua code";
-      #   config = "vimscript code";
-      # }
 
       {
         plugin = oil-nvim;
-        config = toLua "require('oil').setup()";
+        config = "require('oil').setup()";
+        type = "lua";
       }
       {
         plugin = nvim-lspconfig;
-        config = toLuaFile ./config/plugins/lsp.lua;
+        config = builtins.readFile ./config/plugins/lsp.lua;
+        type = "lua";
       }
       {
         plugin = nvim-web-devicons;
-        config = toLua "require('nvim-web-devicons').setup()";
+        config = "require('nvim-web-devicons').setup()";
+        type = "lua";
       }
       {
         plugin = lualine-nvim;
-        config = toLuaFile ./config/plugins/lualine.lua;
+        config = builtins.readFile ./config/plugins/lualine.lua;
+        type = "lua";
       }
       {
         plugin = gruvbox-material-nvim;
-        config = toLuaFile ./config/plugins/gruvbox-material.lua;
+        config = builtins.readFile ./config/plugins/gruvbox-material.lua;
+        type = "lua";
       }
       {
         plugin = gitsigns-nvim;
-        config = toLua "require('gitsigns').setup()";
+        config = "require('gitsigns').setup()";
+        type = "lua";
       }
       {
         plugin = which-key-nvim;
-        config = toLua "require('which-key').setup()";
+        config = "require('which-key').setup()";
+        type = "lua";
       }
       {
         plugin = comment-nvim;
-        config = toLua "require('Comment').setup()";
+        config = "require('Comment').setup()";
+        type = "lua";
       }
       {
         plugin = telescope-nvim;
-        config = toLuaFile ./config/plugins/telescope.lua;
+        config = builtins.readFile ./config/plugins/telescope.lua;
+        type = "lua";
       }
       {
-        plugin = nvim-treesitter.withAllGrammars;
-        config = toLuaFile ./config/plugins/treesitter.lua;
+        plugin = nvim-treesitter;
+        config = builtins.readFile ./config/plugins/treesitter.lua;
+        type = "lua";
       }
       {
         plugin = indent-blankline-nvim;
-        config = toLua "require('ibl').setup()";
+        config = "require('ibl').setup()";
+        type = "lua";
       }
       {
         plugin = nvim-autopairs;
-        config = toLua "require('nvim-autopairs').setup()";
+        config = "require('nvim-autopairs').setup()";
+        type = "lua";
       }
       {
         plugin = nvim-surround;
-        config = toLua "require('nvim-surround').setup()";
+        config = "require('nvim-surround').setup()";
+        type = "lua";
       }
       {
         plugin = nvim-tree-lua;
-        config = toLua "require('nvim-tree').setup()";
+        config = "require('nvim-tree').setup()";
+        type = "lua";
       }
       # Required by other plugins
       plenary-nvim
@@ -99,7 +101,7 @@ in
       friendly-snippets
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       ${builtins.readFile ./config/options.lua}
       ${builtins.readFile ./config/keybindings.lua}
     '';
