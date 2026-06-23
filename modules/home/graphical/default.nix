@@ -5,7 +5,7 @@
 }:
 let
   startupScript = pkgs.writeShellScriptBin "start" ''
-    ${pkgs.swww}/bin/swww-daemon &
+    ${pkgs.awww}/bin/awww-daemon &
     ${pkgs.mako}/bin/mako &
     ${pkgs.waybar}/bin/waybar &
     systemctl --user enable --now hyprpolkitagent.service
@@ -14,7 +14,7 @@ let
 
     sleep 1
 
-    ${pkgs.swww}/bin/swww img ${./wallpaper.png} &
+    ${pkgs.awww}/bin/awww img ${./wallpaper.png} &
   '';
 in
 {
@@ -40,6 +40,7 @@ in
   # Configure Hyprland
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "lua";
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
     plugins = [ ];
     systemd = {
@@ -115,7 +116,7 @@ in
 
           # Launch common programs
           "$mod_SHIFT, Return, exec, kitty"
-          "$mod, Return, exec, rofi -show drun"
+          "$mod, Return, exec, rofi -show drun -matching fuzzy"
 
           # Vim-like navigation
           "$mod, H, movefocus, l"
@@ -301,6 +302,7 @@ in
     };
     rofi = {
       enable = true;
+      theme = "gruvbox-dark-hard";
     };
   };
 
