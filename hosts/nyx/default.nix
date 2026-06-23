@@ -27,7 +27,7 @@
     ./hardware.nix
   ];
 
-  environment.systemPackages = with pkgs; [ wineWowPackages.stable winetricks ];
+  environment.systemPackages = with pkgs; [ wineWow64Packages.stable winetricks ];
 
   gaming.enable = true;
 

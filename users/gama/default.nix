@@ -37,7 +37,7 @@
       onlyoffice-desktopeditors
       obsidian
       beeper
-      protonvpn-gui
+      proton-vpn
       bottom
       mpv
       nicotine-plus
