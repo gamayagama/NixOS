@@ -40,30 +40,17 @@
       proton-vpn
       bottom
       mpv
-      nicotine-plus
       picard
       spek
-      audacity
-      yazi
-      teams-for-linux
-      geogebra
       speedcrunch
-      pandoc
-      freetube
       proton-pass
-      qbittorrent
       discord
       rclone
-      rclone-browser
-      hexchat
-      calibre
       jdk
       adoptopenjdk-icedtea-web
       unrar
-      geany-with-vte
       ncdu
       feishin
-      vcv-rack
       beeper
     ] ++ [inputs.zen-browser.packages.${pkgs.system}.default];
 
