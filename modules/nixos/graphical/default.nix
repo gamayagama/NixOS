@@ -15,6 +15,7 @@
 
   services = {
     displayManager = {
+      ly.enable = true;
       lemurs = {
         enable = false;
         settings = {
