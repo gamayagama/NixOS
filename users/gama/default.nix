@@ -52,6 +52,7 @@
       ncdu
       feishin
       beeper
+      signal-desktop
     ] ++ [inputs.zen-browser.packages.${pkgs.system}.default];
 
   home = {
